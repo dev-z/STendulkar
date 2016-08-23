@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Data Analysis</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- Angular library -->
+	<script src="https://code.angularjs.org/1.4.8/angular.min.js"></script>
+
+	<!-- ChartJS library -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+
+	<script src="scripts/app/app.js"></script>
+	<script src="scripts/app/controllers.js"></script>
+	<script src="scripts/app/services.js"></script>
+
+	<link rel="stylesheet" href="css/main.css">
+
+</head>
+<body ng-app="ngSachin" ng-controller="SachinCtrl">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>“Sachin Tendulkar is a former Indian cricketer, widely regarded to be the greatest cricketer of all time.”</h1>
+			<h1><small>Scroll on to know why...</small></h1>
+		</div>
+	</div><!-- /jumbotron  -->
+	<section class="container" id="text_stats" style="padding-bottom: 4%;">
+		<h2>Stats:</h2>
+		<h3>Total Matches Played: {{sachinStatHolder.totalMatches}}</h3>
+		<div class="row">
+			<div class="col-md-4">
+				<!-- For displaying the pie chart for matches won and lost -->
+				<canvas id="matchesChart" width="400" height="400"></canvas>
+			</div>
+			<div class="col-md-1"></div>
+			<div class="col-md-7">
+				<div class="table-responsive" id="table1">
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td><strong>Batting Score</strong></td>
+								<td>{{sachinStatHolder.battingScore}}</td>
+							</tr>
+							<tr>
+								<td><strong>Batting Avg.</strong></td>
+								<td>{{sachinStatHolder.battingAvg}}</td>
+							</tr>
+							<tr>
+								<td><strong>Wickets</strong></td>
+								<td>{{sachinStatHolder.wickets}}</td>
+							</tr>
+							<tr>
+								<td><strong>Runs Conceded</strong></td>
+								<td>{{sachinStatHolder.runsConceded}}</td>
+							</tr>
+							<tr>
+								<td><strong>Bowling Avg.</strong></td>
+								<td>{{sachinStatHolder.bowlingAvg}}</td>
+							</tr>
+							<tr>
+								<td><strong>Catches</strong></td>
+								<td>{{sachinStatHolder.catches}}</td>
+							</tr>
+							<tr>
+								<td><strong>Stumps</strong></td>
+								<td>{{sachinStatHolder.stumps}}</td>
+							</tr>
+							<tr>
+								<td><strong>100s / 50s</strong></td>
+								<td>{{sachinStatHolder.hundreds}} / {{sachinStatHolder.fifty}}</td>
+							</tr>
+							<tr>
+								<td><strong>Top Score</strong></td>
+								<td>{{sachinStatHolder.topScore}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div><!-- /table-responsive  -->
+			</div><!-- /col-md-7  -->
+		</div><!-- /row  -->
+		<br />
+		<br />
+		<h3>Historical Timeline of Runs Scored</h3>
+		<div class="row">
+			<!-- For displaying the line chart for historical batting score data -->
+			<canvas id="runHistoryChart" width="100%" height="30px"></canvas>
+		</div><!-- /row  -->
+	</section><!-- /container /text-stats  -->
+	<section id="visual-stats">
+		<div class="container">
+			<h2>Standings against some other top cricketers:</h2>
+			<!--<div class="row"> -->
+				<div class="col-md-6">
+					<h3>Highest runs scored</h3>
+					<canvas id="runsChart" width="400" height="400"></canvas>
+				</div>
+				<div class="col-md-6">
+					<h3>Highest no. of 100s</h3>
+					<canvas id="hundredsChart" width="400" height="400"></canvas>
+				</div>
+				<div class="col-md-6">
+					<h3>Highest no. of 50s</h3>
+					<canvas id="fiftiesChart" width="400" height="400"></canvas>
+				</div>
+				<div class="col-md-6">
+					<h3>Please Note:</h3>
+					<p>You can see from the charts that Sachin has maximum number of runs, highest number of 100s and 50s scored.</p>
+					<p>There are many other record's held by Sachin which cannot be shown here for the lack of data.</p>
+				</div>
+			<!-- </div> --><!-- /row -->
+		</div><!-- /container  -->
+	</section><!-- /visual-stats  -->
+	<section class="bg-hence">
+		<div class="container">
+			<h1 class="text-center">You can now see why Sachin is called the greatest cricketer.</h1>
+		</div>
+	</section>
+	<footer class="container-fluid text-center bg-ftr">
+		<p>Made by Md Ishtiaque Zafar.</p>
+		<p>mail: ishtiaque.zafar92@gmail.com</p>
+		<p>Chart credits: Chart.JS @ <a href="www.chartjs.org">chartjs.org</a></p>
+	</footer>
+</body>
+</html>

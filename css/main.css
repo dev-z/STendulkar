@@ -1,0 +1,17 @@
+.bg-ftr{
+    padding: 1%;
+    background-color: #2f2f2f;
+    color: #ffffff;
+}
+#table1{
+    margin-top:10px;
+    width: 50%;
+}
+#visual-stats{
+    background-color: #eee7ef;
+}
+.bg-hence{
+    background-color: #74a995;
+    color: #ffffff;
+    padding: 2%;
+}
