@@ -43,20 +43,21 @@ angular.module("ngSachin")
 			$scope.compDataHolder.runs.push($scope.sachinStatHolder.battingScore);
 			$scope.compDataHolder.hundreds.push($scope.sachinStatHolder.hundreds);
 			$scope.compDataHolder.fifties.push($scope.sachinStatHolder.fifty);
-			//after stats are generated, create the charts for visualization
+			
+			//fetching competitor's data
+			dataFactory.getCompetitorData().success(function(response){
+				$scope.competitorsData = response;
+				$scope.competitorsData.forEach(addToCompDataHolder);
+				renderComparatorCharts();
+			}).error(function (error) {
+				console.log("Error in fetching competitors data.");
+			});
+			
+			//after stats are generated and competitor's data is fetched, create the charts for visualization
 			renderMatchesCharts();
 			renderRunHistoryChart(runHistoryLabels, runHistoryData);
 		}).error(function (error) {
 			console.log("Error in fetching Sachin's data.");
-		});
-
-		//fetching competitor's data
-		dataFactory.getCompetitorData().success(function(response){
-			$scope.competitorsData = response;
-			$scope.competitorsData.forEach(addToCompDataHolder);
-			renderComparatorCharts();
-		}).error(function (error) {
-			console.log("Error in fetching competitors data.");
 		});
 
 		//This function calculates the totals in sachin's career.
