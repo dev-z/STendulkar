@@ -34,8 +34,9 @@ angular.module("ngSachin")
 		var runHistoryData = [];
 
 		//fetching Sachin's data
-		dataFactory.getSachinData().success(function (response) {
-			$scope.sachinData = response;
+		dataFactory.getSachinData().then(successCallbackSachin, errorCallbackSachin);
+		function successCallbackSachin(response) {
+			$scope.sachinData = response.data;
 			//after data is fetched, calculate the totals
 			$scope.sachinData.forEach(calculateTotals);
 			//after stats are generated, add his data to the cometitor's data holder
@@ -45,20 +46,21 @@ angular.module("ngSachin")
 			$scope.compDataHolder.fifties.push($scope.sachinStatHolder.fifty);
 			
 			//fetching competitor's data
-			dataFactory.getCompetitorData().success(function(response){
-				$scope.competitorsData = response;
+			dataFactory.getCompetitorData().then(function successCallbackComp(response){
+				$scope.competitorsData = response.data;
 				$scope.competitorsData.forEach(addToCompDataHolder);
 				renderComparatorCharts();
-			}).error(function (error) {
-				console.log("Error in fetching competitors data.");
-			});
+			}, function errorCallbackComp(error) {
+				console.log(error.statusText + " Error in fetching competitors data.");
+			});//end of fetching competitor's data
 			
 			//after stats are generated and competitor's data is fetched, create the charts for visualization
 			renderMatchesCharts();
 			renderRunHistoryChart(runHistoryLabels, runHistoryData);
-		}).error(function (error) {
-			console.log("Error in fetching Sachin's data.");
-		});
+		}
+		function errorCallbackSachin(error) {
+			console.log(error.statusText + " Error in fetching Sachin's data.");
+		}
 
 		//This function calculates the totals in sachin's career.
 		function calculateTotals(eachMatch){
@@ -217,11 +219,11 @@ angular.module("ngSachin")
 							'rgba(255, 159, 64, 1)'
 						],
 						borderWidth: 1,
-						data: $scope.compDataHolder.runs,
+						data: $scope.compDataHolder.runs
 					}
 				]
 			};
-			var myBarChart = new Chart(runsCtx, {
+			var myBarChart1 = new Chart(runsCtx, {
 				type: 'bar',
 				data: data1
 			});
@@ -248,11 +250,11 @@ angular.module("ngSachin")
 							'rgba(255, 159, 64, 1)'
 						],
 						borderWidth: 1,
-						data: $scope.compDataHolder.hundreds,
+						data: $scope.compDataHolder.hundreds
 					}
 				]
 			};
-			var myBarChart = new Chart(hundredsCtx, {
+			var myBarChart2 = new Chart(hundredsCtx, {
 				type: 'bar',
 				data: data2
 			});
@@ -279,11 +281,11 @@ angular.module("ngSachin")
 							'rgba(255, 159, 64, 1)'
 						],
 						borderWidth: 1,
-						data: $scope.compDataHolder.fifties,
+						data: $scope.compDataHolder.fifties
 					}
 				]
 			};
-			var myBarChart = new Chart(fiftiesCtx, {
+			var myBarChart3 = new Chart(fiftiesCtx, {
 				type: 'bar',
 				data: data3
 			});
