@@ -1,5 +1,6 @@
 # STendulkar
-Shows the statistics of Sachin's Career.
+A simple site built to display data from json/csv files.
+In this example, it shows the stats of cricketer Sachin Tendulkar's ODI career.
 
 View it @ 
 https://dev-z.github.io/STendulkar/
